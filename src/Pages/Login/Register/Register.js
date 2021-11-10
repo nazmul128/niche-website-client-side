@@ -11,7 +11,6 @@ import CircularProgress from '@mui/material/CircularProgress';
 import Alert from '@mui/material/Alert';
 
 
-
 const Register = () => {
     const [loginData,setLoginData]=useState({})
     const{user,registerUser,isLoading,authError}=useAuth()
@@ -42,19 +41,18 @@ const Register = () => {
     <Typography variant="body1" gutterBottom>
     Register
   </Typography>
-  {isLoading&&<form onSubmit={handleLoginSubmit}>
+  <form onSubmit={handleLoginSubmit}>
   <TextField 
   sx={{width:'75%', m:1}}
-  id="standard-basic" 
+  id="standard-name" 
   label="Your Name"
   type="name"
   name="name"
   onBlur={handleOnBlur} 
   variant="standard" />
-
  <TextField 
   sx={{width:'75%', m:1}}
-  id="standard-basic" 
+  id="standard-email" 
   label="Your Email"
   name="email"
   type="email"
@@ -64,7 +62,7 @@ const Register = () => {
 
     <TextField
     sx={{width:'75%', m:1}}
-    id="standard-basic"
+    id="standard-password"
     label="Your Password"
     type="password"
     name="password"
@@ -74,7 +72,7 @@ const Register = () => {
 
     <TextField
     sx={{width:'75%', m:1}}
-    id="standard-basic"
+    id="standard-password2"
     label="Re-Enter Your Password"
     type="password"
     name="password2"
@@ -86,7 +84,7 @@ const Register = () => {
   </NavLink>
   <Button  sx={{width:'75%', m:1}} type='submit' variant="contained">Register</Button>
 
-  </form>}
+  </form>
   {isLoading&&<CircularProgress />}
       {user?.email && <Alert severity="success">User Created Successfully</Alert>
 }

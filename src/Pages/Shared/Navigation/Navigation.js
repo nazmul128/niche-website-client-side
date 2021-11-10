@@ -31,12 +31,14 @@ const Navigation = () => {
           {
             user?.email ?
             <Box>
-                 <NavLink style={{textDecoration:'none', color:'white'}} to='/'><Button color="inherit">HomePage</Button></NavLink>
+               <NavLink style={{textDecoration:'none', color:'white'}} to='/exploreproducts'><Button color="inherit">Explore Now</Button></NavLink>
+                 <NavLink style={{textDecoration:'none', color:'white'}} to='/dashboard'><Button color="inherit">Dashboard</Button></NavLink>
              <Button style={{textDecoration:'none',color:'white', fontWeight:600}} onClick={logout} color="inherit">Logout</Button>
             </Box>
 
             :
             <Box>
+              
               <NavLink style={{textDecoration:'none', color:'white'}} to='/exploreproducts'><Button color="inherit">Explore Now</Button></NavLink>
             <NavLink style={{textDecoration:'none', color:'white'}} to='/login'><Button color="inherit">Login</Button></NavLink>
               </Box>
