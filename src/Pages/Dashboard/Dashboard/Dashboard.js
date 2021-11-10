@@ -59,7 +59,7 @@ function Dashboard(props) {
           <ListItem disablePadding>
             <ListItemButton>
               <DashboardIcon>
-                <InboxIcon />
+              
               </DashboardIcon>
               <Link style={{textDecoration:'none', color:'gray', fontWeight:700}} to={`${url}`}><Button color='inherit'>Dashboard</Button></Link>
             </ListItemButton>
