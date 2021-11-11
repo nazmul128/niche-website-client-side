@@ -36,14 +36,14 @@ import MakeAdmin from './../MakeAdmin/MakeAdmin';
 import ManageProducts from './../ManageProducts/ManageProducts';
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 import ReorderIcon from '@mui/icons-material/Reorder';
+import useAuth from '../../../hooks/useAuth';
 const drawerWidth = 240;
 
 function Dashboard(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
-
   let { path, url } = useRouteMatch();
-
+const {admin}=useAuth();
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -56,6 +56,7 @@ function Dashboard(props) {
       <Box sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
       <nav aria-label="main mailbox folders">
         <List>
+      
           <ListItem disablePadding>
             <ListItemButton>
               <DashboardIcon>
@@ -88,7 +89,9 @@ function Dashboard(props) {
               <Link style={{textDecoration:'none', color:'gray', fontWeight:700}} to={`${url}/pay`}><Button color='inherit'>Reviews</Button></Link>
             </ListItemButton>
           </ListItem>
-          <ListItem disablePadding>
+        {
+          admin && <Box>
+              <ListItem disablePadding>
             <ListItemButton>
               <ReorderIcon>
                 <InboxIcon />
@@ -120,6 +123,12 @@ function Dashboard(props) {
               <Link  style={{textDecoration:'none', color:'gray', fontWeight:700}} to={`${url}/manageProduct`}><Button color='inherit'>Manage Products</Button></Link>
             </ListItemButton>
           </ListItem>
+
+          </Box>
+        }
+         
+        
+          
         
         </List>
       </nav>
