@@ -6,9 +6,12 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import Rating from '@mui/material/Rating';
 import Button from '@mui/material/Button';
+import { Link } from 'react-router-dom';
 
 const Explore = (props) => {
-    const {name,description,img,rating,price}=props.explore;
+  console.log(props)
+    // const{_id}=props._id;
+    const {_id,name,description,img,rating,price}=props.product;
     return (
         <Grid  item xs={4} sm={4} md={4}  >
         <Card sx={{ minWidth: 275,border: 0,boxShadow: 0 }}>
@@ -37,7 +40,7 @@ const Explore = (props) => {
      <Rating name="read-only" value={rating} readOnly />
      </Typography>
    </CardContent>
-   <Button variant="contained">Buy Now</Button>
+   <Link to={`/purchases/${_id}`}><Button variant="contained">Buy Now</Button></Link>
 
   
  </Card>

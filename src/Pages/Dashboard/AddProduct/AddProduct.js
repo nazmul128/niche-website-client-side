@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import { Button, Container, TextField } from '@mui/material';
@@ -8,6 +8,33 @@ import { NavLink } from 'react-router-dom';
 
 
 const AddProduct = () => {
+    const [products,setProducts]=useState({})
+
+    const handleAddProduct=e=>{
+      const field=e.target.name;
+      const value=e.target.value;
+      const newAddProduct={ ...products};
+      newAddProduct[field]=value;
+      setProducts(newAddProduct);
+  }
+
+  const ReviewAddProduct=e=>{
+    const product={products};
+
+    fetch('http://localhost:5000/products',{
+      method:'POST',
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify(product),
+    })
+    .then(res=>res.json())
+    .then(data=>{
+      setProducts('')
+      console.log(data)
+  })
+
+    e.preventDefault();
+  }
+
     return (
         <Container>
            
@@ -17,14 +44,14 @@ const AddProduct = () => {
     <Typography sx={{fontWeight:600}} variant="h4" gutterBottom>
     Add a Product
   </Typography>
-  <form>
+  <form onSubmit={ReviewAddProduct}>
   <TextField 
   sx={{width:'75%', m:1}}
   id="standard-img" 
   label="Image Url"
   type="img"
   name="img"
- 
+  onBlur={handleAddProduct}
   variant="standard" />
  <TextField 
   sx={{width:'75%', m:1}}
@@ -32,7 +59,7 @@ const AddProduct = () => {
   label="Name"
   name="name"
   type="name"
-
+  onBlur={handleAddProduct}
   variant="standard" />
   <br/>
 
@@ -41,22 +68,33 @@ const AddProduct = () => {
           id="standard-textarea"
           label="Description"
           placeholder="Description"
-          rows={4}
+          rows={2}
+          onBlur={handleAddProduct}
           multiline
           variant="standard"
         />
+         <TextField 
+  sx={{width:'75%', m:1}}
+  id="standard-number" 
+  label="Tk."
+  name="number"
+  type="number"
+  onBlur={handleAddProduct}
+  variant="standard" />
+ 
          <TextField 
   sx={{width:'75%', m:1}}
   id="standard-rating" 
   label="Rating"
   name="rating"
   type="rating"
+  onBlur={handleAddProduct}
   variant="standard" />
+ 
   <br/>
 
-  <NavLink style={{ textDecoration:'none'}}  to='/login'>
   <Button  sx={{width:'50%', mt:2}} type='submit' variant="contained">Add a Product</Button>
-  </NavLink>
+
 
   </form>
     </Grid>

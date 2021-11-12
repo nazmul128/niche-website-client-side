@@ -10,11 +10,9 @@ import InboxIcon from '@mui/icons-material/MoveToInbox';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import DashboardIcon from '@mui/icons-material/Dashboard';
-import ListItemText from '@mui/material/ListItemText';
 import PaymentIcon from '@mui/icons-material/Payment';
 import AgricultureIcon from '@mui/icons-material/Agriculture';import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import DraftsIcon from '@mui/icons-material/Drafts';
 import ReviewsIcon from '@mui/icons-material/Reviews';
 import ProductionQuantityLimitsIcon from '@mui/icons-material/ProductionQuantityLimits';
 import SupervisorAccountIcon from '@mui/icons-material/SupervisorAccount';
@@ -27,7 +25,6 @@ import {
   } from "react-router-dom";
   import { Button, ListItemButton } from '@mui/material';
 import DashboardHome from '../DashboardHome/DashboardHome';
-import Reviews from '../../Home/Reviews/Reviews';
 import AddProduct from './../AddProduct/AddProduct';
 import Pay from '../Pay/Pay';
 import MyOrders from '../MyOrders/MyOrders';
@@ -37,6 +34,7 @@ import ManageProducts from './../ManageProducts/ManageProducts';
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 import ReorderIcon from '@mui/icons-material/Reorder';
 import useAuth from '../../../hooks/useAuth';
+import AddReviews from '../AddReviews/AddReviews';
 const drawerWidth = 240;
 
 function Dashboard(props) {
@@ -86,7 +84,7 @@ const {admin}=useAuth();
               <ReviewsIcon>
                 <InboxIcon />
               </ReviewsIcon>
-              <Link style={{textDecoration:'none', color:'gray', fontWeight:700}} to={`${url}/pay`}><Button color='inherit'>Reviews</Button></Link>
+              <Link style={{textDecoration:'none', color:'gray', fontWeight:700}} to={`${url}/reviews`}><Button color='inherit'>Reviews</Button></Link>
             </ListItemButton>
           </ListItem>
         {
@@ -223,7 +221,7 @@ const {admin}=useAuth();
          <MyOrders></MyOrders>
         </Route>
         <Route path={`${path}/reviews`}>
-         <Reviews></Reviews>
+        <AddReviews></AddReviews>
         </Route>
         <Route path={`${path}/myOrder`}>
          <MyOrders></MyOrders>
