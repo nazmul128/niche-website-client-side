@@ -9,6 +9,8 @@ import { NavLink } from 'react-router-dom';
 
 const AddProduct = () => {
     const [products,setProducts]=useState({})
+    // const product={products};
+    console.log( products)
 
     const handleAddProduct=e=>{
       const field=e.target.name;
@@ -19,12 +21,12 @@ const AddProduct = () => {
   }
 
   const ReviewAddProduct=e=>{
-    const product={products};
+    
 
     fetch('http://localhost:5000/products',{
       method:'POST',
       headers: { "content-type": "application/json" },
-      body: JSON.stringify(product),
+      body: JSON.stringify(products),
     })
     .then(res=>res.json())
     .then(data=>{
@@ -69,6 +71,7 @@ const AddProduct = () => {
           label="Description"
           placeholder="Description"
           rows={2}
+          name="description"
           onBlur={handleAddProduct}
           multiline
           variant="standard"
@@ -77,7 +80,7 @@ const AddProduct = () => {
   sx={{width:'75%', m:1}}
   id="standard-number" 
   label="Tk."
-  name="number"
+  name="price"
   type="number"
   onBlur={handleAddProduct}
   variant="standard" />

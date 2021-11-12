@@ -12,6 +12,7 @@ import AuthProvider from './contexts/AuthProvider/AuthProvider';
 import PrivateRoute from './Pages/Login/PrivateRoute/PrivateRoute';
 import Dashboard from './Pages/Dashboard/Dashboard/Dashboard';
 import PurchaseDetails from './Pages/Home/PurchaseDetails/PurchaseDetails';
+import NotFound from './Pages/Home/NotFound/NotFound';
 
 function App() {
   return (
@@ -40,6 +41,9 @@ function App() {
           <Route path="/purchases/:id">
             <PurchaseDetails />
           </Route>
+          <Route path='*'>
+              <NotFound></NotFound>
+            </Route>
         </Switch>
      </Router>
   </AuthProvider>
