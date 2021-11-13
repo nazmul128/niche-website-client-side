@@ -11,7 +11,7 @@ Links:
 
 * A Multi Page react Application that includes the CCTV Security Camera.
 * This app includes the CCTV service realted information.
-* This app includes the Tourism add a product, add review , manage order, make admin, manage product information.
+* This app includes add a product, add review , manage order, make admin, manage product information.
 * This app includes the firebase authentication such as Gmail and user-login.
 * This app includes when the user's information save and store the database.
 * This app includes the users information,user add,delete information.  
