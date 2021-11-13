@@ -35,6 +35,7 @@ import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 import ReorderIcon from '@mui/icons-material/Reorder';
 import useAuth from '../../../hooks/useAuth';
 import AddReviews from '../AddReviews/AddReviews';
+import AdminRoute from '../../Login/AdminRoute/AdminRoute';
 const drawerWidth = 240;
 
 function Dashboard(props) {
@@ -55,7 +56,9 @@ const {admin}=useAuth();
       <nav aria-label="main mailbox folders">
         <List>
       
-          <ListItem disablePadding>
+         {/* {
+           !admin && <Box> */}
+              <ListItem disablePadding>
             <ListItemButton>
               <DashboardIcon>
               
@@ -63,7 +66,11 @@ const {admin}=useAuth();
               <Link style={{textDecoration:'none', color:'gray', fontWeight:700}} to={`${url}`}><Button color='inherit'>Dashboard</Button></Link>
             </ListItemButton>
           </ListItem>
-          <ListItem disablePadding>
+          {/* {
+           !admin && <Box> */}
+          {
+            !admin &&
+            <ListItem disablePadding>
             <ListItemButton>
               <PaymentIcon>
                 <InboxIcon />
@@ -71,33 +78,47 @@ const {admin}=useAuth();
               <Link style={{textDecoration:'none', color:'gray', fontWeight:700}} to={`${url}/pay`}><Button color='inherit'>Pay</Button></Link>
             </ListItemButton>
           </ListItem>
-          <ListItem disablePadding>
-            <ListItemButton>
-              <AgricultureIcon>
-                <InboxIcon />
-              </AgricultureIcon>
-              <Link style={{textDecoration:'none', color:'gray', fontWeight:700}} to={`${url}/myOrder`}><Button color='inherit'>My Orders</Button></Link>
-            </ListItemButton>
-          </ListItem>
-          <ListItem disablePadding>
-            <ListItemButton>
-              <ReviewsIcon>
-                <InboxIcon />
-              </ReviewsIcon>
-              <Link style={{textDecoration:'none', color:'gray', fontWeight:700}} to={`${url}/reviews`}><Button color='inherit'>Reviews</Button></Link>
-            </ListItemButton>
-          </ListItem>
+          }
+         {
+           !admin &&
+           <ListItem disablePadding>
+           <ListItemButton>
+             <AgricultureIcon>
+               <InboxIcon />
+             </AgricultureIcon>
+             <Link style={{textDecoration:'none', color:'gray', fontWeight:700}} to={`${url}/myOrder`}><Button color='inherit'>My Orders</Button></Link>
+           </ListItemButton>
+         </ListItem>
+         }
         {
-          admin && <Box>
-              <ListItem disablePadding>
+          !admin &&
+          <ListItem disablePadding>
+          <ListItemButton>
+            <ReviewsIcon>
+              <InboxIcon />
+            </ReviewsIcon>
+            <Link style={{textDecoration:'none', color:'gray', fontWeight:700}} to={`${url}/reviews`}><Button color='inherit'>Reviews</Button></Link>
+          </ListItemButton>
+        </ListItem>
+        }
+           {/* </Box>
+         } */}
+        {/* {
+          admin && <Box> */}
+              {
+                admin &&
+                <ListItem disablePadding>
             <ListItemButton>
               <ReorderIcon>
                 <InboxIcon />
               </ReorderIcon>
-              <Link style={{textDecoration:'none', color:'gray', fontWeight:700}} to={`${url}/pay`} to={`${url}/allOrder`}><Button color='inherit'>Manage Orders</Button></Link>
+              <Link style={{textDecoration:'none', color:'gray', fontWeight:700}} to={`${url}/allOrder`}><Button color='inherit'>Manage Orders</Button></Link>
             </ListItemButton>
           </ListItem>
-          <ListItem disablePadding>
+              }
+          {
+            admin &&
+            <ListItem disablePadding>
             <ListItemButton>
               <AddPhotoAlternateIcon>
                 <InboxIcon />
@@ -105,7 +126,10 @@ const {admin}=useAuth();
               <Link  style={{textDecoration:'none', color:'gray', fontWeight:700}} to={`${url}/addProduct`}><Button color='inherit'>Add Products</Button></Link>
             </ListItemButton>
           </ListItem>
-          <ListItem disablePadding>
+          }
+          {
+            admin &&
+            <ListItem disablePadding>
             <ListItemButton>
               <SupervisorAccountIcon>
                 <InboxIcon />
@@ -113,18 +137,22 @@ const {admin}=useAuth();
               <Link  style={{textDecoration:'none', color:'gray', fontWeight:700}} to={`${url}/makeAdmin`}><Button color='inherit'>Make Admin</Button></Link>
             </ListItemButton>
           </ListItem>
-          <ListItem disablePadding>
-            <ListItemButton>
-              <ProductionQuantityLimitsIcon>
-                <InboxIcon />
-              </ProductionQuantityLimitsIcon>
-              <Link  style={{textDecoration:'none', color:'gray', fontWeight:700}} to={`${url}/manageProduct`}><Button color='inherit'>Manage Products</Button></Link>
-            </ListItemButton>
-          </ListItem>
+          }
+         {
+           admin && 
+           <ListItem disablePadding>
+           <ListItemButton>
+             <ProductionQuantityLimitsIcon>
+               <InboxIcon />
+             </ProductionQuantityLimitsIcon>
+             <Link  style={{textDecoration:'none', color:'gray', fontWeight:700}} to={`${url}/manageProduct`}><Button color='inherit'>Manage Products</Button></Link>
+           </ListItemButton>
+         </ListItem>
 
-          </Box>
+         }
+          {/* </Box>
         }
-         
+          */}
         
           
         
@@ -135,14 +163,7 @@ const {admin}=useAuth();
        
       </nav>
     </Box>
-      {/* <Link to={`${url}`}><Button color='inherit'>Dashboard</Button></Link>
-      <Link to={`${url}/pay`}><Button color='inherit'>Pay</Button></Link>
-      <Link to={`${url}/myOrder`}><Button color='inherit'>My Orders</Button></Link>
-      <Link to={`${url}/reviews`}><Button color='inherit'>Reviews</Button></Link>
-      <Link to={`${url}/allOrder`}><Button color='inherit'>Manage Orders</Button></Link>
-      <Link to={`${url}/addProduct`}><Button color='inherit'>Add Products</Button></Link>
-      <Link to={`${url}/makeAdmin`}><Button color='inherit'>Make Admin</Button></Link>
-      <Link to={`${url}/manageProduct`}><Button color='inherit'>Manage Products</Button></Link> */}
+     
     </div>
   );
 
@@ -226,18 +247,18 @@ const {admin}=useAuth();
         {/* <Route path={`${path}/myOrder`}>
          <ManageAllOrder></ManageAllOrder>
         </Route> */}
-        <Route path={`${path}/allOrder`}>
+        <AdminRoute path={`${path}/allOrder`}>
          <ManageAllOrder></ManageAllOrder>
-        </Route>
-        <Route path={`${path}/addProduct`}>
+        </AdminRoute>
+        <AdminRoute path={`${path}/addProduct`}>
          <AddProduct></AddProduct>
-        </Route>
-        <Route path={`${path}/makeAdmin`}>
+        </AdminRoute>
+        <AdminRoute path={`${path}/makeAdmin`}>
          <MakeAdmin></MakeAdmin>
-        </Route>
-        <Route path={`${path}/manageProduct`}>
+        </AdminRoute>
+        <AdminRoute path={`${path}/manageProduct`}>
          <ManageProducts></ManageProducts>
-        </Route>
+        </AdminRoute>
         {/* <AdminRoute path={`${path}/makeAdmin`}>
         <Reviews></Reviews>
         </AdminRoute>

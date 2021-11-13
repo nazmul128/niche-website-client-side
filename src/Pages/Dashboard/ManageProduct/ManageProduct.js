@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Grid from '@mui/material/Grid';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -7,11 +7,89 @@ import Typography from '@mui/material/Typography';
 import Rating from '@mui/material/Rating';
 import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
+import useAuth from '../../../hooks/useAuth';
+import { useEffect } from 'react';
 
 const ManageProduct = (props) => {
   console.log(props)
     // const{_id}=props._id;
     const {_id,name,description,img,rating,price}=props.manageproduct;
+    const{user}=useAuth();
+   const [users,setUsers]=useState([])
+   const [allProducts, setAllProducts] = useState([]);
+
+  //  const handleDeleteUser=id=>{
+  //    const proceed=window.confirm('Are you sure, you want  to Delete?')
+  //    if(proceed){
+  //      const url=`http://localhost:5000/products/${id}`;
+  //      console.log(url)
+  //      fetch(url,{
+  //        method:'DELETE'
+  //      })
+  //      .then(res=>res.json())
+  //      .then(data=>{
+  //        console.log(data)
+  //        if(data.deletedCount>0){
+  //          alert('Successfully Deleted');
+  //          const remainingUser=users.filter(user=>user._id!==id)
+  //          setUsers(remainingUser);
+  //        }
+  //      })
+
+  //    }
+  //  }
+
+    // const handleDeleteUser=id=>{
+    //   const proceed=window.confirm('Are you sure,you want to delete?');
+    //   if(proceed){
+    //     console.log(id);
+    //     const url=`http://localhost:5000/products/${id}`;
+    //     fetch(url,{
+    //       method:'DELETE'
+    //     })
+    //     .then(res=>res.json())
+    //     .then(data=>{
+    //       console.log(data);
+    //        if(data.deletedCount>0){
+    //          alert('Successfully Deleted');
+    //          const remainingUser=users.filter(user=>user._id!==id)
+    //          setUsers(remainingUser);
+    //        }
+    //     })
+    //   }
+    //  }
+   
+    useEffect(() => {
+        fetch(`http://localhost:5000/products`)
+            .then(response => response.json())
+            .then(jsonData => setAllProducts(jsonData))
+    }, []);
+
+    const handleDeleteUser = id => {
+      const confirmation = window.confirm("Delete this product from list permanently???");
+
+      if (confirmation) {
+         
+          fetch(`http://localhost:5000/products/${id}`, {
+              method: 'DELETE'
+          })
+              .then(response => response.json())
+              .then(jsonData => {
+                console.log(jsonData)
+                  if (jsonData.deletedCount) {
+                      alert("This product is removed!");
+                      const remainingProducts = allProducts.filter(product => product._id !== id);
+                      setUsers(remainingProducts);
+                  }
+                  
+              })
+              .catch(err=>{
+                console.log(err)})
+      }
+  };
+  
+
+
     return (
         <Grid  item xs={4} sm={4} md={4}  >
         <Card sx={{ minWidth: 275,border: 0,boxShadow: 0 }}>
@@ -40,7 +118,8 @@ const ManageProduct = (props) => {
      <Rating name="read-only" value={rating} readOnly />
      </Typography>
    </CardContent>
-   <Link to={`/purchases/${_id}`}><Button variant="contained">Buy Now</Button></Link>
+   
+   <Button onClick={()=>handleDeleteUser(_id)} variant="contained">Delete</Button>
 
   
  </Card>

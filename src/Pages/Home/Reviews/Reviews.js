@@ -1,4 +1,9 @@
 import React, {useState,useEffect} from 'react';
+import Review from './../Review/Review';
+import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
+import { Box } from '@mui/system';
+
 
 const Reviews = () => {
     const[reviews,setReviews]=useState([]);
@@ -14,9 +19,22 @@ const Reviews = () => {
 
     return (
         <div>
-            {
-                reviews.map(review=><h1>This is a Review Page {review?.reviews?.name}</h1>)
-            }
+
+<Box>
+<Typography sx={{fontWeight:600, mt:8}} variant="h4" gutterBottom component="div">
+       Reviews
+      </Typography>
+<Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
+
+{
+    reviews.map(review=><Review
+        key={review._id}
+        review={review}
+    >
+    </Review>)
+}
+ </Grid>
+</Box>
             
         </div>
     );

@@ -3,9 +3,11 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import { Button, Container, TextField } from '@mui/material';
 import Grid from '@mui/material/Grid';
+import useAuth from './../../../hooks/useAuth';
 
 const AddReviews = () => {
     const [reviews,setReviews]=useState({});
+    const {user}=useAuth();
 
     const handleReview=e=>{
         const field=e.target.name;
@@ -39,23 +41,15 @@ const AddReviews = () => {
     Add a Reviews
   </Typography>
   <form onSubmit={ReviewSubmit}>
-  <TextField 
  
-  sx={{width:'75%', m:1}}
-  id="standard-img" 
-  label="Image Url"
-  type="img"
-  onBlur={handleReview}
-  name="img"
- 
-  variant="standard" />
  <TextField 
   sx={{width:'75%', m:1}}
   id="standard-name" 
   label="Name"
   name="name"
+  defaultValue={user.displayName}
   onBlur={handleReview}
-  type="name"
+  type="text"
 
   variant="standard" />
   <br/>
@@ -65,12 +59,21 @@ const AddReviews = () => {
           id="standard-textarea"
           label="Description"
           placeholder="Description"
-          name="Description"
+          name="description"
           onBlur={handleReview}
           rows={2}
           multiline
           variant="standard"
         />
+  <TextField
+          id="outlined-number"
+          label="Number"
+          type="number"
+          name="rating"
+          InputLabelProps={{
+            shrink: true,
+          }}
+        /><br/>
         
 
  

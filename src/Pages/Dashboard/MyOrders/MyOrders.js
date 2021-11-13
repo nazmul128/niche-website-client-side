@@ -56,7 +56,7 @@ const MyOrders = () => {
         .then(data=>{
           console.log(data)
           // setMyOrder(data)
-          const result = myOrder.filter(order => order?.addUser?.email===user?.email);
+          const result = data.filter(order => order.addUser.email===user.email);
           setMyOrder(result);
         })
     },[])
@@ -78,7 +78,7 @@ const MyOrders = () => {
             {myOrder.map((row) => (
               <StyledTableRow key={row._id}>
                 <StyledTableCell component="th" scope="row">
-                  {row.name}
+                  {row?.addUser?.name}
                 </StyledTableCell>
                 <StyledTableCell align="right">{row?.addUser?.email}</StyledTableCell>
                 <StyledTableCell align="right">{row?.addUser?.title}</StyledTableCell>

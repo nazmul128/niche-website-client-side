@@ -15,7 +15,7 @@ const useFirebase = () => {
   const auth = getAuth();
   const googleProvider = new GoogleAuthProvider();
 
-  const registerUser = (email, password,name,history) => {
+  const registerUser = (email, password, name, history) => {
       setIsLoading(true);
       createUserWithEmailAndPassword(auth, email, password)
           .then((userCredential) => {
@@ -88,7 +88,7 @@ const useFirebase = () => {
   }, [])
 
   useEffect(()=>{
-    fetch(`https://nameless-sea-36831.herokuapp.com/users/${user.email}`)
+    fetch(`http://localhost:5000/users/${user.email}`)
     .then(res=>res.json())
     .then(data=>setAdmin(data.admin))
   },[user.email])

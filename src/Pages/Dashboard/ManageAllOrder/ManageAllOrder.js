@@ -69,6 +69,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { useParams } from 'react-router';
 import { useState, useEffect } from 'react';
+import { Button } from '@mui/material';
 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -126,6 +127,7 @@ const ManageAllOrder = () => {
               <StyledTableCell align="right">Title</StyledTableCell>
               <StyledTableCell align="right">Price</StyledTableCell>
               <StyledTableCell align="right">Address</StyledTableCell>
+              <StyledTableCell align="right">Status</StyledTableCell>
               {/* <StyledTableCell align="right">Status</StyledTableCell>
               <StyledTableCell align="right">Delete</StyledTableCell> */}
             </TableRow>
@@ -134,13 +136,13 @@ const ManageAllOrder = () => {
             {manageOrder.map((row) => (
               <StyledTableRow key={row._id}>
                 <StyledTableCell component="th" scope="row">
-                  {row.name}
+                  {row?.addUser?.name}
                 </StyledTableCell>
                 <StyledTableCell align="right">{row?.addUser?.email}</StyledTableCell>
                 <StyledTableCell align="right">{row?.addUser?.title}</StyledTableCell>
-                <StyledTableCell align="right">{row.price}</StyledTableCell>
-                <StyledTableCell align="right">{row.address}</StyledTableCell>
-                <StyledTableCell align="right">{row.Status}</StyledTableCell>
+                <StyledTableCell align="right">{row?.addUser?.price}</StyledTableCell>
+                <StyledTableCell align="right">{row?.addUser?.address}</StyledTableCell>
+                <StyledTableCell align="right">{row.Status}<Button variant='contained'>Status</Button></StyledTableCell>
                 <StyledTableCell align="right">{row.Delete}</StyledTableCell>
               </StyledTableRow>
             ))}

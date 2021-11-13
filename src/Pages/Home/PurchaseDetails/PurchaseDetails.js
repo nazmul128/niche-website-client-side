@@ -10,12 +10,15 @@ import { useParams, useRouteMatch } from 'react-router';
 import { useHistory } from 'react-router-dom';
 
 import { useEffect } from 'react';
+import useAuth from '../../../hooks/useAuth';
 
 
 const PurchaseDetails = () => {
     const [newPurchases,setNewPurchases]=useState({})
     const [addUser,setAddUser]=useState({})
     const {id}=useParams()
+
+    const {user}=useAuth();
     
     const history =useHistory()
    
@@ -51,6 +54,7 @@ const PurchaseDetails = () => {
   const handleAddUser=e=>{
   
     const user={addUser}
+  
     
     fetch('http://localhost:5000/addUser',{
       method:'POST',
@@ -68,25 +72,13 @@ const PurchaseDetails = () => {
     return (
         <div>
             <Navigation></Navigation>
-            <h1>This is a Purchase page</h1>
+           
             <Container>
             <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={2}>
-        <Grid item xs={8}>
-        <img src={newPurchases?.img}alt="" />
-
-        <Typography sx={{fontWeight:600, color:'green'}} variant="h6" component="div">
-      {newPurchases?.name}
-     </Typography>
-     <Typography sx={{ mb:2}}  variant="h5" component="div">
-      Tk.{newPurchases?.price}
-     </Typography>
-     <Typography sx={{mx:3}} variant="body2" color="text.secondary">
-     <Rating name="read-only" value={newPurchases?.rating}  />
-     </Typography>
-        </Grid>
+      
         <Grid item xs={4}>
-        <Typography sx={{fontWeight:600}} variant="h4" gutterBottom>
+        <Typography sx={{fontWeight:600, mt:5}} variant="h4" gutterBottom>
       Add a Order
      </Typography>
 
@@ -97,6 +89,7 @@ const PurchaseDetails = () => {
      label="Your Name"
      type="name"
      name="name"
+     defaultValue={user.displayName}
      onBlur={AddUser}
      variant="standard" />
     <TextField 
@@ -104,9 +97,12 @@ const PurchaseDetails = () => {
      id="standard-email" 
      label="Your Email"
      name="email"
+     defaultValue={user.email}
+    
      type="email"
      onBlur={AddUser}
-     variant="standard" />
+     variant="standard"
+     readOnly />
      <br/>
    
     <TextField 
