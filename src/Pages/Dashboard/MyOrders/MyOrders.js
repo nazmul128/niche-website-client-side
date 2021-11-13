@@ -9,6 +9,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { useParams } from 'react-router';
 import { useState, useEffect } from 'react';
+import useAuth from '../../../hooks/useAuth';
 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -31,28 +32,34 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     },
   }));
   
-  function createData(Name, Email, Details, Price, Address, Status, Delete) {
-    return { Name, Email, Details, Price, Address, Status, Delete };
-  }
+  // function createData(Name, Email, Details, Price, Address, Status, Delete) {
+  //   return { Name, Email, Details, Price, Address, Status, Delete };
+  // }
   
-  const myOrder = [
-    createData(),
-    createData(),
-    createData(),
-    createData(),
-    createData(),
-    createData(),
-    createData(),
-  ];
+  // const myOrder = [
+  //   createData(),
+  //   createData(),
+  //   createData(),
+  //   createData(),
+  //   createData(),
+  //   createData(),
+  //   createData(),
+  // ];
 
 const MyOrders = () => {
-    const {id}=useParams();
+    // const {id}=useParams();
+    const{user}=useAuth();
     const [myOrder,setMyOrder]=useState([])
     useEffect(()=>{
-        fetch('http://localhost:5000/addUser')
+        fetch(`http://localhost:5000/addUser`)
         .then(res=>res.json())
-        .then(data=>setMyOrder(data))
-    },[myOrder])
+        .then(data=>{
+          console.log(data)
+          // setMyOrder(data)
+          const result = myOrder.filter(order => order?.addUser?.email===user?.email);
+          setMyOrder(result);
+        })
+    },[])
     return (
         <TableContainer component={Paper}>
         <Table sx={{ minWidth: 700 }} aria-label="customized table">
@@ -60,7 +67,7 @@ const MyOrders = () => {
             <TableRow>
               <StyledTableCell>Name</StyledTableCell>
               <StyledTableCell align="right">Email</StyledTableCell>
-              <StyledTableCell align="right">Details</StyledTableCell>
+              <StyledTableCell align="right">Title</StyledTableCell>
               <StyledTableCell align="right">Price</StyledTableCell>
               <StyledTableCell align="right">Address</StyledTableCell>
               {/* <StyledTableCell align="right">Status</StyledTableCell>
@@ -73,10 +80,10 @@ const MyOrders = () => {
                 <StyledTableCell component="th" scope="row">
                   {row.name}
                 </StyledTableCell>
-                <StyledTableCell align="right">{row.Email}</StyledTableCell>
-                <StyledTableCell align="right">{row.Details}</StyledTableCell>
-                <StyledTableCell align="right">{row.Price}</StyledTableCell>
-                <StyledTableCell align="right">{row.Address}</StyledTableCell>
+                <StyledTableCell align="right">{row?.addUser?.email}</StyledTableCell>
+                <StyledTableCell align="right">{row?.addUser?.title}</StyledTableCell>
+                <StyledTableCell align="right">{row?.addUser?.price}</StyledTableCell>
+                <StyledTableCell align="right">{row?.addUser?.address}</StyledTableCell>
                 <StyledTableCell align="right">{row.Status}</StyledTableCell>
                 <StyledTableCell align="right">{row.Delete}</StyledTableCell>
               </StyledTableRow>

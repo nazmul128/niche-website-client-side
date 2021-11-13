@@ -223,9 +223,9 @@ const {admin}=useAuth();
         <Route path={`${path}/reviews`}>
         <AddReviews></AddReviews>
         </Route>
-        <Route path={`${path}/myOrder`}>
-         <MyOrders></MyOrders>
-        </Route>
+        {/* <Route path={`${path}/myOrder`}>
+         <ManageAllOrder></ManageAllOrder>
+        </Route> */}
         <Route path={`${path}/allOrder`}>
          <ManageAllOrder></ManageAllOrder>
         </Route>
