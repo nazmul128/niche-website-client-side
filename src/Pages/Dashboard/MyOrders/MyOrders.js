@@ -51,7 +51,7 @@ const MyOrders = () => {
     const{user}=useAuth();
     const [myOrder,setMyOrder]=useState([])
     useEffect(()=>{
-        fetch(`http://localhost:5000/addUser`)
+        fetch(`https://vast-everglades-34724.herokuapp.com/addUser`)
         .then(res=>res.json())
         .then(data=>{
           console.log(data)

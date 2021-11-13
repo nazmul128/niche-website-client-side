@@ -19,7 +19,7 @@ const AddReviews = () => {
 
     const ReviewSubmit=e=>{
         const user={reviews}
-      fetch('http://localhost:5000/reviews',{
+      fetch('https://vast-everglades-34724.herokuapp.com/reviews',{
           method:'POST',
           headers: { "content-type": "application/json" },
           body: JSON.stringify(user),

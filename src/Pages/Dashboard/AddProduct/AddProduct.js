@@ -23,7 +23,7 @@ const AddProduct = () => {
   const ReviewAddProduct=e=>{
     
 
-    fetch('http://localhost:5000/products',{
+    fetch('https://vast-everglades-34724.herokuapp.com/products',{
       method:'POST',
       headers: { "content-type": "application/json" },
       body: JSON.stringify(products),

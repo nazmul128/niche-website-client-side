@@ -26,7 +26,7 @@ const PurchaseDetails = () => {
 
     const [purchases, setPurchases] = useState([])
     useEffect(() => {
-        fetch('http://localhost:5000/products')
+        fetch('https://vast-everglades-34724.herokuapp.com/products')
             .then(res => res.json())
             .then(data => { 
               setPurchases(data.products)
@@ -56,7 +56,7 @@ const PurchaseDetails = () => {
     const user={addUser}
   
     
-    fetch('http://localhost:5000/addUser',{
+    fetch('https://vast-everglades-34724.herokuapp.com/addUser',{
       method:'POST',
       headers: { "content-type": "application/json" },
       body: JSON.stringify(user),

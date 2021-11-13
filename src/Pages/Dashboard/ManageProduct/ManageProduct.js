@@ -21,7 +21,7 @@ const ManageProduct = (props) => {
   //  const handleDeleteUser=id=>{
   //    const proceed=window.confirm('Are you sure, you want  to Delete?')
   //    if(proceed){
-  //      const url=`http://localhost:5000/products/${id}`;
+  //      const url=`https://vast-everglades-34724.herokuapp.com/products/${id}`;
   //      console.log(url)
   //      fetch(url,{
   //        method:'DELETE'
@@ -43,7 +43,7 @@ const ManageProduct = (props) => {
     //   const proceed=window.confirm('Are you sure,you want to delete?');
     //   if(proceed){
     //     console.log(id);
-    //     const url=`http://localhost:5000/products/${id}`;
+    //     const url=`https://vast-everglades-34724.herokuapp.com/products/${id}`;
     //     fetch(url,{
     //       method:'DELETE'
     //     })
@@ -60,7 +60,7 @@ const ManageProduct = (props) => {
     //  }
    
     useEffect(() => {
-        fetch(`http://localhost:5000/products`)
+        fetch(`https://vast-everglades-34724.herokuapp.com/products`)
             .then(response => response.json())
             .then(jsonData => setAllProducts(jsonData))
     }, []);
@@ -70,7 +70,7 @@ const ManageProduct = (props) => {
 
       if (confirmation) {
          
-          fetch(`http://localhost:5000/products/${id}`, {
+          fetch(`https://vast-everglades-34724.herokuapp.com/products/${id}`, {
               method: 'DELETE'
           })
               .then(response => response.json())

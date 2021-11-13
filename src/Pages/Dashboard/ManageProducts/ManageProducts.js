@@ -42,7 +42,7 @@
 //   const [manageProducts,setManageProducts]=useState([])
 //   useEffect(()=>{
   
-//     fetch('http://localhost:5000/products')
+//     fetch('https://vast-everglades-34724.herokuapp.com/products')
 //     .then(res=>res.json())
 //     .then(data=>{
 //       console.log(data)
@@ -69,7 +69,7 @@ const ManageProducts = () => {
   const [manageProducts,setManageProducts]=useState([])
   useEffect(()=>{
   
-    fetch('http://localhost:5000/products')
+    fetch('https://vast-everglades-34724.herokuapp.com/products')
     .then(res=>res.json())
     .then(data=>{
       console.log(data)
