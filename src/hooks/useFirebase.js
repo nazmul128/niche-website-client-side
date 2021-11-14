@@ -85,7 +85,7 @@ const useFirebase = () => {
           setIsLoading(false);
       });
       return () => unsubscribed;
-  }, [])
+  }, [auth])
 
   useEffect(()=>{
     fetch(`https://vast-everglades-34724.herokuapp.com/users/${user.email}`)

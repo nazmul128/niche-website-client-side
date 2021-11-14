@@ -1,14 +1,10 @@
-import React,{useRef, useState} from 'react';
+import React,{ useState} from 'react';
 import Navigation from '../../Shared/Navigation/Navigation';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import { Button, Container, TextField } from '@mui/material';
 import Grid from '@mui/material/Grid';
-import { Link } from 'react-router-dom';
-import Rating from '@mui/material/Rating';
-import { useParams, useRouteMatch } from 'react-router';
-import { useHistory } from 'react-router-dom';
-
+import { useParams } from 'react-router';
 import { useEffect } from 'react';
 import useAuth from '../../../hooks/useAuth';
 
@@ -20,9 +16,9 @@ const PurchaseDetails = () => {
 
     const {user}=useAuth();
     
-    const history =useHistory()
+    // const history =useHistory()
    
-    let { path, url } = useRouteMatch();
+    // let { path, url } = useRouteMatch();
 
     const [purchases, setPurchases] = useState([])
     useEffect(() => {
@@ -36,7 +32,7 @@ const PurchaseDetails = () => {
     // console.log(id)
     
   useEffect(()=>{
-    const match = purchases?.find(purchase => purchase?._id == id)
+    const match = purchases?.find(purchase => purchase?._id === id)
     setNewPurchases(match)
     console.log(purchases)
   },[purchases])

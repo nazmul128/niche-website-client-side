@@ -42,7 +42,7 @@ function Dashboard(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
   let { path, url } = useRouteMatch();
-const {admin}=useAuth();
+const {admin, logout}=useAuth();
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -150,6 +150,12 @@ const {admin}=useAuth();
          </ListItem>
 
          }
+         <ListItem disablePadding>
+            <ListItemButton>
+         
+              <Link style={{textDecoration:'none', color:'gray', fontWeight:700}} onClick={logout}  to={`${url}`}><Button color='inherit'>Logout</Button></Link>
+            </ListItemButton>
+          </ListItem>
           {/* </Box>
         }
           */}

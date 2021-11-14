@@ -2,11 +2,8 @@ import React from 'react';
 import Grid from '@mui/material/Grid';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import Rating from '@mui/material/Rating';
-import Button from '@mui/material/Button';
-import { Link } from 'react-router-dom';
 
 
 const Review = (props) => {
