@@ -42,6 +42,8 @@ const AddReviews = () => {
   </Typography>
   <form onSubmit={ReviewSubmit}>
  
+
+ 
  <TextField 
   sx={{width:'75%', m:1}}
   id="standard-name" 
@@ -50,6 +52,7 @@ const AddReviews = () => {
   defaultValue={user.displayName}
   onBlur={handleReview}
   type="text"
+  
 
   variant="standard" />
   <br/>
@@ -66,8 +69,9 @@ const AddReviews = () => {
           variant="standard"
         />
   <TextField
+  sx={{width:'75%', m:1}}
           id="outlined-number"
-          label="Number"
+          label="Rating"
           type="number"
           name="rating"
           InputLabelProps={{
